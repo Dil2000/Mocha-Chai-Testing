@@ -23,7 +23,7 @@ router.delete('/blob/:id', deleteBlob);
 function findAllBlobs(req, res) {
   db.Blob.findAll({    
   }).then(function(data){
-    // res.json(data);
+    res.json(data);
   }).catch(function(err){
     res.json(err)
   })
@@ -48,7 +48,7 @@ function addBlob(req, res) {
     name: req.body.name,
     lastName: req.body.lastName
   }).then(function(data){
-    // res.json({'New Record' : data})
+    res.json({'New Record' : data})
   }).catch(function(err){
     res.json(err)
   });

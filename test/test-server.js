@@ -3,13 +3,14 @@ var env         = process.env.NODE_ENV || 'extraVariables';
 var config      = require(__dirname + '/../config/config.json')[env];
 // process.env.NODE_ENV = 'test';
 
+
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 // var mongoose = require("mongoose");
 var sequelize   = require('sequelize');
 
 var server = require('../app');
-var db = require("../models");
+var Blob = require("../models");
 
 var should = chai.should();
 chai.use(chaiHttp);
@@ -18,14 +19,14 @@ chai.use(chaiHttp);
 describe('Blobs', function() {
 
   // Delete the table before start
-  db.Blob.destroy({
+  Blob.Blob.destroy({
     where: {},
     truncate: true
   })
 
   // Create a new record 
   beforeEach(function(done){
-    db.Blob.create({
+    Blob.Blob.create({
       name: 'Bat',
       lastName: 'Man'
     }).then(function(data){ 
@@ -38,13 +39,12 @@ describe('Blobs', function() {
 
   // Destroy the record
   afterEach(function(done){
-    db.Blob.destroy({
+    Blob.Blob.destroy({
       where: {},
       truncate: true
     });
     done();
   });
-
 
   it('should list ALL blobs on /blobs GET', function(done) {
     chai.request(server)
