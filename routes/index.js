@@ -8,7 +8,7 @@ var env         = process.env.NODE_ENV || 'extraVariables';
 var config      = require(__dirname + '/../config/config.json')[env];
 
 router.get('/', function(req, res, next) {
-  res.send('Hello, World!');
+  res.send('Hello World!');
 });
 
 // *** api routes *** //
@@ -17,7 +17,6 @@ router.get('/blob/:id', findBlobById);
 router.post('/blobs', addBlob);
 router.put('/blob/:id', updateBlob);
 router.delete('/blob/:id', deleteBlob);
-
 
 // *** get ALL blobs *** //
 function findAllBlobs(req, res) {
